@@ -1,0 +1,18 @@
+root@debian11:/mnt/shared/build/linux_x86# cmake -DCMAKE_C_FLAGS="-m32" ../..
+-- The C compiler identification is GNU 10.2.1
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Operating System: Linux
+-- System Architecture: x86
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/shared/build/linux_x86
+root@debian11:/mnt/shared/build/linux_x86# make
+Scanning dependencies of target sqlite3x86
+[ 50%] Building C object CMakeFiles/sqlite3x86.dir/sqlite-amalgamation-3260000/sqlite3.c.o
+[100%] Linking C shared library libsqlite3x86.so
+[100%] Built target sqlite3x86
+

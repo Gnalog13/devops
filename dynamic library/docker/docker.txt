@@ -1,0 +1,50 @@
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+ERROR: The default build profile '/root/.conan2/profiles/default' doesn't exist.
+You need to create a default profile (type 'conan profile detect' command)
+or specify your own profile with '--profile:build=<myprofile>'
+
+ERROR: Missing prebuilt package for 'fmt/9.1.0'. You can try:
+    - List all available packages using 'conan list "fmt/9.1.0:*" -r=remote'
+    - Explain missing binaries: replace 'conan install ...' with 'conan graph explain ...'
+    - Try to build locally from sources using the '--build=fmt/9.1.0' argument
+
+More Info at 'https://docs.conan.io/2/knowledge/faq.html#error-missing-prebuilt-package'
+
+ERROR: Invalid generator 'cmake'. Available types: CMakeToolchain, CMakeDeps, MesonToolchain, MSBuildDeps, MSBuildToolchain, NMakeToolchain, NMakeDeps, VCVars, VirtualRunEnv, VirtualBuildEnv, AutotoolsDeps, AutotoolsToolchain, GnuToolchain, PkgConfigDeps, BazelDeps, BazelToolchain, IntelCC, XcodeDeps, XcodeToolchain, PremakeDeps, MakeDeps, SConsDeps, QbsDeps
+
+
+CMake Error at CMakeLists.txt:5 (find_package):
+  By not providing "Findfmt.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "fmt", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "fmt" with any of
+  the following names:
+
+    fmtConfig.cmake
+    fmt-config.cmake
+
+  Add the installation prefix of "fmt" to CMAKE_PREFIX_PATH or set "fmt_DIR"
+  to a directory containing one of the above files.  If "fmt" provides a
+  separate development package or SDK, be sure it has been installed.
+
+
+cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+$ cmake --build .
+
+
